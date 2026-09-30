@@ -188,7 +188,7 @@ function parseFoodText(input) {
 function findNearestGramAmount(text, foodStart, foodEnd) {
   // Поддерживает "200 грамм", "200 г", а также фразы с числом словами,
   // которые normalizeText предварительно преобразует в цифры.
-  const regex = /(\d+(?:[.,]\d+)?)\s*(?:грамм(?:а|ов)?|гр\b|г\b)/g;
+  const regex = /(\d+(?:[.,]\d+)?)\s*(?:грамм(?:а|ов)?|гр|г)(?=$|[\s,.;:])/g;
   const matches = [];
   let match;
 
