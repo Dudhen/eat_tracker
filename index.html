@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>БЖУ — дневной трекер</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Локальный MVP</p>
+        <h1>Трекер БЖУ</h1>
+        <p class="muted">Цели и дневник хранятся только в этом браузере.</p>
+      </div>
+      <div id="todayLabel" class="date-badge"></div>
+    </header>
+
+    <section class="card">
+      <h2>1. Цель на день</h2>
+      <div class="target-grid">
+        <label>
+          <span>Белки, г</span>
+          <input id="targetProtein" type="number" min="0" step="1" inputmode="decimal" placeholder="120" />
+        </label>
+        <label>
+          <span>Жиры, г</span>
+          <input id="targetFat" type="number" min="0" step="1" inputmode="decimal" placeholder="60" />
+        </label>
+        <label>
+          <span>Углеводы, г</span>
+          <input id="targetCarbs" type="number" min="0" step="1" inputmode="decimal" placeholder="180" />
+        </label>
+      </div>
+      <button id="saveTargetsBtn" class="button primary">Сохранить цель</button>
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <div>
+          <h2>2. Добавить продукты</h2>
+          <p class="muted">Например: «творог 200 грамм, банан 120 грамм»</p>
+        </div>
+      </div>
+
+      <div class="voice-row">
+        <button id="micBtn" class="button mic" type="button">🎤 Говорить</button>
+        <div id="speechStatus" class="status" aria-live="polite">Микрофон не запущен</div>
+      </div>
+
+      <label class="text-input-label">
+        <span>Или введите текст вручную</span>
+        <textarea id="foodText" rows="3" placeholder="куриная грудка 200 грамм, рис 150 грамм"></textarea>
+      </label>
+
+      <button id="parseBtn" class="button">Распознать продукты</button>
+
+      <div id="parseMessage" class="message" aria-live="polite"></div>
+      <div id="parsedList" class="parsed-list"></div>
+
+      <div id="confirmBar" class="confirm-bar hidden">
+        <button id="addParsedBtn" class="button primary">Добавить в дневник</button>
+        <button id="clearParsedBtn" class="button ghost">Очистить</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <h2>3. Остаток на сегодня</h2>
+        <button id="resetDayBtn" class="button danger ghost" type="button">Очистить сегодняшний дневник</button>
+      </div>
+
+      <div id="macroSummary" class="macro-summary"></div>
+    </section>
+
+    <section class="card">
+      <h2>Сегодня съедено</h2>
+      <div id="diaryList" class="diary-list"></div>
+    </section>
+
+    <footer>
+      <p>
+        Голосовой ввод зависит от поддержки браузером Web Speech API.
+        Если кнопка микрофона недоступна, используйте текстовое поле.
+      </p>
+    </footer>
+  </main>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>
